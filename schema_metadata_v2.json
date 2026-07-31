@@ -1,0 +1,103 @@
+{
+    "database": {
+        "name": "Indian Car Specifications",
+        "dialect": "SQLite",
+        "description": "Relational automotive database of passenger vehicles.",
+        "primary_entity": "Vehicle",
+        "join_key": "car_id"
+    },
+    "glossary": {
+        "ADAS": "Advanced Driver Assistance Systems",
+        "ABS": "Anti-lock Braking System",
+        "ESC": "Electronic Stability Control",
+        "PS": "Metric Horsepower",
+        "Nm": "Newton metre",
+        "NCAP": "New Car Assessment Programme"
+    },
+    "join_information": {
+        "primary_join_key": "car_id",
+        "relationship": "one_to_one"
+    },
+    "tables": {
+        "dimensions": {
+            "description": "Vehicle dimensions.",
+            "purpose": "Stores physical measurements.",
+            "primary_key": null,
+            "foreign_keys": [
+                {
+                    "column": "car_id",
+                    "references": "master_overview.car_id"
+                }
+            ],
+            "relationships": [
+                {
+                    "type": "one_to_one",
+                    "join": "dimensions.car_id = master_overview.car_id"
+                }
+            ],
+            "query_hints": [
+                "Join using car_id",
+                "Can be filtered",
+                "Can be aggregated"
+            ],
+            "columns": [
+                {
+                    "name": "car_id",
+                    "datatype": "TEXT",
+                    "nullable": false,
+                    "semantic_type": "text",
+                    "unit": null,
+                    "examples": [
+                        "C001",
+                        "C002",
+                        "C003",
+                        "C004",
+                        "C005"
+                    ],
+                    "statistics": null
+                },
+                {
+                    "name": "brand",
+                    "datatype": "TEXT",
+                    "nullable": true,
+                    "semantic_type": "categorical",
+                    "unit": null,
+                    "examples": [
+                        "Volkswagen",
+                        "Skoda",
+                        "BMW",
+                        "Mercedes-Benz",
+                        "Audi"
+                    ],
+                    "statistics": null
+                },
+                {
+                    "name": "model",
+                    "datatype": "TEXT",
+                    "nullable": true,
+                    "semantic_type": "categorical",
+                    "unit": null,
+                    "examples": [
+                        "Virtus",
+                        "Taigun",
+                        "Tiguan",
+                        "Tayron",
+                        "Golf GTI"
+                    ],
+                    "statistics": null
+                },
+                {
+                    "name": "length_mm",
+                    "datatype": "INTEGER",
+                    "nullable": true,
+                    "semantic_type": "numeric",
+                    "unit": "mm",
+                    "examples": [
+                        4561,
+                        4221,
+                        4539,
+                        4796,
+                        4295
+                    ],
+                    "statistics": {
+                        "min": 

@@ -1,0 +1,416 @@
+{
+    "dimensions": {
+        "primary_key": null,
+        "foreign_keys": [
+            {
+                "column": "car_id",
+                "references": "master_overview.car_id"
+            }
+        ],
+        "columns": [
+            {
+                "name": "car_id",
+                "type": "TEXT",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "brand",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "model",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "length_mm",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Vehicle length."
+            },
+            {
+                "name": "width_mm",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Vehicle width."
+            },
+            {
+                "name": "height_mm",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Vehicle height."
+            },
+            {
+                "name": "wheelbase_mm",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Wheelbase."
+            },
+            {
+                "name": "boot_space_litres",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Boot capacity."
+            }
+        ]
+    },
+    "engine_configuration": {
+        "primary_key": null,
+        "foreign_keys": [
+            {
+                "column": "car_id",
+                "references": "master_overview.car_id"
+            }
+        ],
+        "columns": [
+            {
+                "name": "car_id",
+                "type": "TEXT",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "brand",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "model",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "engine_type",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Fuel type / engine technology."
+            },
+            {
+                "name": "displacement_cc",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Engine displacement in cubic centimetres."
+            },
+            {
+                "name": "cylinders",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Number of engine cylinders."
+            },
+            {
+                "name": "transmission_type",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Transmission type."
+            },
+            {
+                "name": "drivetrain",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Drive configuration."
+            }
+        ]
+    },
+    "master_overview": {
+        "primary_key": "car_id",
+        "foreign_keys": [],
+        "columns": [
+            {
+                "name": "car_id",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Unique identifier of each vehicle."
+            },
+            {
+                "name": "brand",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Vehicle manufacturer."
+            },
+            {
+                "name": "model",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Vehicle model."
+            },
+            {
+                "name": "variant_trim",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Vehicle variant or trim."
+            },
+            {
+                "name": "body_type",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "SUV, Sedan, Hatchback etc."
+            },
+            {
+                "name": "launch_year",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Year of launch."
+            },
+            {
+                "name": "segment",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Vehicle market segment."
+            }
+        ]
+    },
+    "power_performance": {
+        "primary_key": null,
+        "foreign_keys": [
+            {
+                "column": "car_id",
+                "references": "master_overview.car_id"
+            }
+        ],
+        "columns": [
+            {
+                "name": "car_id",
+                "type": "TEXT",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "brand",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "model",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "power_ps",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Maximum engine power (PS)."
+            },
+            {
+                "name": "torque_nm",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Maximum torque (Nm)."
+            },
+            {
+                "name": "accel_0_100_sec",
+                "type": "REAL",
+                "nullable": true,
+                "description": "Time to accelerate from 0 to 100 km/h."
+            },
+            {
+                "name": "top_speed_kmh",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Maximum speed."
+            },
+            {
+                "name": "fuel_efficiency_kmpl",
+                "type": "REAL",
+                "nullable": true,
+                "description": "Claimed fuel efficiency."
+            }
+        ]
+    },
+    "price": {
+        "primary_key": null,
+        "foreign_keys": [
+            {
+                "column": "car_id",
+                "references": "master_overview.car_id"
+            }
+        ],
+        "columns": [
+            {
+                "name": "car_id",
+                "type": "TEXT",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "brand",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "model",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "ex_showroom_min_inr_lakh",
+                "type": "REAL",
+                "nullable": true,
+                "description": "Starting ex-showroom price."
+            },
+            {
+                "name": "ex_showroom_max_inr_lakh",
+                "type": "REAL",
+                "nullable": true,
+                "description": "Maximum ex-showroom price."
+            },
+            {
+                "name": "top_variant_price_inr_lakh",
+                "type": "REAL",
+                "nullable": true,
+                "description": "Price of top variant."
+            },
+            {
+                "name": "currency",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Currency."
+            },
+            {
+                "name": "price_as_of_date",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Date when price was recorded."
+            }
+        ]
+    },
+    "ratings_reviews": {
+        "primary_key": null,
+        "foreign_keys": [
+            {
+                "column": "car_id",
+                "references": "master_overview.car_id"
+            }
+        ],
+        "columns": [
+            {
+                "name": "car_id",
+                "type": "TEXT",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "brand",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "model",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "expert_rating_out_of_10",
+                "type": "REAL",
+                "nullable": true,
+                "description": "Expert rating."
+            },
+            {
+                "name": "user_rating_out_of_5",
+                "type": "REAL",
+                "nullable": true,
+                "description": "Average user rating."
+            },
+            {
+                "name": "review_count",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Number of user reviews."
+            }
+        ]
+    },
+    "safety": {
+        "primary_key": null,
+        "foreign_keys": [
+            {
+                "column": "car_id",
+                "references": "master_overview.car_id"
+            }
+        ],
+        "columns": [
+            {
+                "name": "car_id",
+                "type": "TEXT",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "brand",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "model",
+                "type": "TEXT",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "ncap_rating_stars",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "NCAP safety rating."
+            },
+            {
+                "name": "ncap_body",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Testing organization."
+            },
+            {
+                "name": "airbags_count",
+                "type": "INTEGER",
+                "nullable": true,
+                "description": "Number of airbags."
+            },
+            {
+                "name": "adas_available",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Whether ADAS is available."
+            },
+            {
+                "name": "abs_esc_available",
+                "type": "TEXT",
+                "nullable": true,
+                "description": "Whether ABS and ESC are available."
+            }
+        ]
+    },
+    "sqlite_stat1": {
+        "primary_key": null,
+        "foreign_keys": [],
+        "columns": [
+            {
+                "name": "tbl",
+                "type": "",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "idx",
+                "type": "",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "stat",
+                "type": "",
+                "nullable": true,
+                "description": ""
+            }
+        ]
+    }
+}
