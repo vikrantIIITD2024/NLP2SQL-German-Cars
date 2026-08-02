@@ -1,64 +1,75 @@
-
 """
 metadata_generator/generate.py
 """
 
 from pathlib import Path
 
-from inspector import SQLiteInspector
-from statistics import StatisticsBuilder
-from validator import MetadataValidator
-from json_writer import JSONWriter
-from markdown import MarkdownWriter
+from metadata_generator.inspector import SQLiteInspector
+from metadata_generator.statistics import StatisticsBuilder
+from metadata_generator.validator import MetadataValidator
+from metadata_generator.json_writer import JSONWriter
+from metadata_generator.markdown import MarkdownWriter
+
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "database" / "car_specs_database.db"
 METADATA_DIR = ROOT / "metadata"
 
-metadata = {
-    "database": {
-        "name": "Indian Passenger Vehicle Database",
-        "dialect": "SQLite",
-        "domain": "Automotive",
-        "primary_entity": "Vehicle",
-        "primary_key": "car_id",
-        "default_view": "car_complete"
-    },
-    "tables": {},
-    "views": {}
-}
 
-inspector = SQLiteInspector(str(DB_PATH))
-builder = StatisticsBuilder(inspector)
+def main():
 
-for table in inspector.get_tables():
-    metadata["tables"][table] = builder.build_table_metadata(table)
-
-for view in inspector.get_views():
-    metadata["views"][view] = {
-        "description": "Database view",
-        "recommended": True
+    metadata = {
+        "database": {
+            "name": "Indian Passenger Vehicle Database",
+            "dialect": "SQLite",
+            "domain": "Automotive",
+            "primary_entity": "Vehicle",
+            "primary_key": "car_id",
+            "default_view": "car_complete",
+        },
+        "tables": {},
+        "views": {},
     }
 
-validator = MetadataValidator()
-validator.validate(metadata)
-validator.print_summary(metadata)
+    inspector = SQLiteInspector(str(DB_PATH))
+    builder = StatisticsBuilder(inspector)
 
-JSONWriter.write(
-    metadata,
-    str(METADATA_DIR / "schema_metadata_v3.json")
-)
+    print("Reading database...")
 
-MarkdownWriter.write_summary(
-    metadata,
-    str(METADATA_DIR / "schema_summary.md")
-)
+    for table in inspector.get_tables():
+        print(f"Processing table: {table}")
+        metadata["tables"][table] = builder.build_table_metadata(table)
 
-MarkdownWriter.write_dictionary(
-    metadata,
-    str(METADATA_DIR / "database_dictionary.md")
-)
+    for view in inspector.get_views():
+        metadata["views"][view] = {
+            "description": "Database view",
+            "recommended": True,
+        }
 
-inspector.close()
+    validator = MetadataValidator()
+    validator.validate(metadata)
+    validator.print_summary(metadata)
 
-print("\nMetadata generation complete.")
+    JSONWriter.write(
+        metadata,
+        METADATA_DIR / "schema_metadata_v3.json",
+    )
+
+    MarkdownWriter.write_summary(
+        metadata,
+        METADATA_DIR / "schema_summary.md",
+    )
+
+    MarkdownWriter.write_dictionary(
+        metadata,
+        METADATA_DIR / "database_dictionary.md",
+    )
+
+    inspector.close()
+
+    print("\nMetadata generation completed successfully!")
+    print(f"Output folder: {METADATA_DIR}")
+
+
+if __name__ == "__main__":
+    main()
